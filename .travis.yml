@@ -7,3 +7,11 @@ before_install:
 
 script:
   - docker run -e CI=true apescape/react_docker npm run test
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: "8a0c57b9-f59d-4283-bfa8-316eff88eb91"
+  app: react-docker-app
+  on:
+    branch: master
