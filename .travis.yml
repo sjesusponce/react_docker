@@ -13,6 +13,7 @@ script:
 
 deploy:
   provider: script
+  skip_cleanup: true
   script:
     #Push a Heroku container
     #docker build -t $DOCKER_TAG -f Dockerfile.dev .
