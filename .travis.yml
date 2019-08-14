@@ -9,12 +9,12 @@ script:
   - docker build -t $DOCKER_TAG -f Dockerfile.dev .
   - docker run -e CI=true $DOCKER_TAG npm run test
   - docker tag $DOCKER_TAG registry.heroku.com/$HEROKU_APP_NAME/web
+  - docker inspect -f '{{.Id}}' registry.heroku.com/$HEROKU_APP_NAME/web
 
 deploy:
   provider: script
   skip_cleanup: true
   script:
     docker push registry.heroku.com/$HEROKU_APP_NAME/web
-    docker inspect -f '{{.Id}}' registry.heroku.com/$HEROKU_APP_NAME/web
   on:
     branch: master
