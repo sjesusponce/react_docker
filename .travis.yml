@@ -16,6 +16,6 @@ deploy:
   provider: script
   skip_cleanup: true
   script:
-    bash startDeploy.sh $HEROKU_APP_NAME $DOCKER_IMAGE_ID
+    bash startDeploy.sh $HEROKU_APP_NAME $DOCKER_IMAGE_ID $HEROKU_API_KEY
   on:
     branch: master
