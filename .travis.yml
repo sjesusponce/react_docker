@@ -14,8 +14,6 @@ deploy:
   provider: script
   skip_cleanup: true
   script:
-    docker build -t $DOCKER_TAG -f Dockerfile.dev .
-    
     docker push registry.heroku.com/$HEROKU_APP_NAME/web
   on:
     branch: master
