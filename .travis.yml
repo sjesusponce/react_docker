@@ -15,5 +15,6 @@ deploy:
   skip_cleanup: true
   script:
     docker push registry.heroku.com/$HEROKU_APP_NAME/web
+    docker inspect -f '{{.Id}}' registry.heroku.com/$HEROKU_APP_NAME/web
   on:
     branch: master
