@@ -1,14 +1,15 @@
 sudo: required
 services:
   - docker
-
+env:
+  - DOCKER_IMAGE_ID=none
 before_install:
   - docker login -u=_ -p=$HEROKU_API_KEY registry.heroku.com
 
 script:
   - docker build -t $DOCKER_TAG -f Dockerfile.dev .
   - docker run -e CI=true $DOCKER_TAG npm run test
-  - docker tag $DOCKER_TAG registry.heroku.com/$HEROKU_APP_NAME/web
+  - DOCKER_IMAGE_ID=`docker tag $DOCKER_TAG registry.heroku.com/$HEROKU_APP_NAME/web`
   - docker inspect -f '{{.Id}}' registry.heroku.com/$HEROKU_APP_NAME/web
 
 deploy:
@@ -16,5 +17,6 @@ deploy:
   skip_cleanup: true
   script:
     docker push registry.heroku.com/$HEROKU_APP_NAME/web
+    bash startDeploy.sh $HEROKU_APP_NAME $DOCKER_IMAGE_ID
   on:
     branch: master
