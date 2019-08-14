@@ -6,7 +6,7 @@ EXEC1=`docker push registry.heroku.com/$1/web`
 
 echo $EXEC1
 
-DATA="'{'updates':[{'type': 'web', 'docker_image': '"${2}"'}]}'"
+DATA='{"updates":[{"type": "web", "docker_image": '"${2}"']}"'
 
 echo $DATA
 
