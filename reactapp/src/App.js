@@ -8,7 +8,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         {/* <p>Edit <code>src/App.js</code> and save to reload.</p> */}
-        <p>Running ReactJs in Docker</p>
+        <p>Running ReactJs in Docker Integrated with Travis CI</p>
         <a
           className="App-link"
           href="https://reactjs.org"
